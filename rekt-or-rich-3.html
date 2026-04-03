@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>REKT OR RICH Signals</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='200' height='210' viewBox='0 0 200 210' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='200' height='200' fill='%23080808'/%3E%3Cpolyline points='15,40 35,48 50,44 62,70 72,62 82,95 90,88 98,118' fill='none' stroke='%23E24B4A' stroke-width='2.2'/%3E%3Cpolyline points='102,118 110,108 120,115 132,85 142,94 155,62 165,72 178,42 192,50' fill='none' stroke='%23639922' stroke-width='2.2'/%3E%3Ccircle cx='100' cy='118' r='3.5' fill='%23ffffff'/%3E%3Cline x1='15' y1='130' x2='185' y2='130' stroke='%231e1e1e' stroke-width='1'/%3E%3Ctext x='68' y='175' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23E24B4A' text-anchor='middle'%3ER%3C/text%3E%3Ctext x='100' y='168' font-family='monospace' font-size='11' fill='%23333' text-anchor='middle'%3E%7C%3C/text%3E%3Ctext x='132' y='175' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23639922' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E"/>
+<meta name="description" content="Precision Futures & Forex signals delivered live on Telegram. NQ, Gold, EUR/USD, GBP/JPY and more. Join REKT OR RICH Signals today."/>
+<meta property="og:title" content="REKT OR RICH Signals"/>
+<meta property="og:description" content="Precision Futures & Forex signals delivered live on Telegram. NQ, Gold, EUR/USD, GBP/JPY and more."/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="REKT OR RICH Signals"/>
+<meta name="twitter:description" content="Precision Futures & Forex signals delivered live on Telegram. NQ, Gold, EUR/USD, GBP/JPY and more."/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --sky: #e8f4fd;
+    --sky-mid: #cce8f8;
+    --sky-deep: #a8d8f0;
+    --blue: #2196c9;
+    --blue-dark: #1470a0;
+    --blue-xdark: #0d4f72;
+    --rekt: #E24B4A;
+    --rich: #639922;
+    --white: #ffffff;
+    --ink: #0e2130;
+    --ink-mid: #2a4a62;
+    --ink-light: #5a7a96;
+    --border: rgba(33,150,201,0.15);
+    --border-mid: rgba(33,150,201,0.3);
+    --glass: rgba(255,255,255,0.75);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px; font-weight: 700; letter-spacing: 2px;
+    display: flex; align-items: center; gap: 10px; text-decoration: none;
+    color: var(--ink);
+  }
+  .nav-logo .rekt { color: var(--rekt); }
+  .nav-logo .rich { color: var(--rich); }
+  .nav-logo .sep { color: var(--ink-light); font-weight: 400; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    letter-spacing: 2px; color: var(--ink-mid); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta {
+    background: var(--blue); color: #fff;
+    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    padding: 10px 20px; border-radius: 3px; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--blue-dark); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; padding-top: 64px;
+    background: linear-gradient(160deg, #f0f8ff 0%, #e4f2fc 40%, #cde8f7 100%);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(33,150,201,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(33,150,201,0.07) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+  /* chart lines behind everything */
+  .hero-chart {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0; text-align: center; padding: 0 20px;
+  }
+
+  /* BANNER embed */
+  .banner-wrap {
+    width: min(680px, 92vw);
+    background: #080808;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(13,79,114,0.25), 0 4px 16px rgba(0,0,0,0.12);
+    border: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 36px;
+    animation: floatIn 1s cubic-bezier(.22,1,.36,1) both;
+  }
+  .banner-wrap svg { display: block; width: 100%; }
+
+  .hero-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px; letter-spacing: 4px; color: var(--blue);
+    text-transform: uppercase; margin-bottom: 16px;
+    animation: fadeUp 0.8s 0.3s both;
+  }
+  .hero-tagline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: var(--ink-mid); font-weight: 300;
+    max-width: 540px; line-height: 1.6;
+    animation: fadeUp 0.8s 0.5s both;
+    margin-bottom: 36px;
+  }
+  .hero-btns {
+    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 0.8s 0.7s both;
+  }
+  .btn-primary {
+    background: var(--blue); color: #fff;
+    font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px;
+    padding: 16px 36px; border-radius: 3px; text-decoration: none;
+    transition: all 0.2s; border: none; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(33,150,201,0.35);
+  }
+  .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--blue);
+    font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px;
+    padding: 16px 36px; border-radius: 3px; text-decoration: none;
+    border: 1.5px solid var(--blue-dark); transition: all 0.2s; cursor: pointer;
+  }
+  .btn-outline:hover { background: var(--sky); transform: translateY(-2px); }
+
+  /* live pill */
+  .live-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(226,75,74,0.08); border: 1px solid rgba(226,75,74,0.25);
+    border-radius: 20px; padding: 6px 14px;
+    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    color: var(--rekt); margin-bottom: 20px;
+    animation: fadeUp 0.8s 0.1s both;
+  }
+  .pulse-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--rekt);
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:0.3; transform:scale(0.7); }
+  }
+
+  /* scroll arrow */
+  .scroll-arrow {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px;
+    color: var(--ink-light); animation: bounce 2s infinite;
+    text-decoration: none;
+  }
+  .scroll-arrow svg { opacity: 0.5; }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+  /* ── TICKER ── */
+  .ticker-bar {
+    background: var(--blue-xdark);
+    padding: 12px 0; overflow: hidden;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .ticker-track {
+    display: flex; gap: 60px; white-space: nowrap;
+    animation: ticker 28s linear infinite;
+    width: max-content;
+  }
+  .ticker-item {
+    font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px;
+    color: rgba(255,255,255,0.6); display: flex; align-items: center; gap: 10px;
+  }
+  .ticker-item .up { color: var(--rich); }
+  .ticker-item .dn { color: var(--rekt); }
+  .ticker-sep { color: rgba(255,255,255,0.2); }
+  @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px 40px; }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; letter-spacing: 4px; color: var(--blue);
+    text-transform: uppercase; margin-bottom: 16px; display: block;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px); font-weight: 900;
+    color: var(--ink); line-height: 1.1; margin-bottom: 20px;
+  }
+  .section-body {
+    font-size: 17px; color: var(--ink-light); line-height: 1.7;
+    max-width: 540px;
+  }
+  .center { text-align: center; }
+  .center .section-body { margin: 0 auto; }
+
+  /* ── WHAT WE COVER ── */
+  .cover-section {
+    background: var(--white);
+  }
+  .cover-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px; margin-top: 60px; max-width: 1100px; margin-left: auto; margin-right: auto;
+  }
+  .cover-card {
+    background: var(--sky); border: 1px solid var(--border-mid);
+    border-radius: 8px; padding: 36px 32px;
+    position: relative; overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .cover-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(33,150,201,0.12); }
+  .cover-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--sky-deep));
+  }
+  .cover-icon {
+    font-size: 28px; margin-bottom: 16px; display: block;
+  }
+  .cover-name {
+    font-family: 'Space Mono', monospace; font-size: 18px; font-weight: 700;
+    color: var(--ink); margin-bottom: 8px; letter-spacing: 1px;
+  }
+  .cover-desc {
+    font-size: 14px; color: var(--ink-light); line-height: 1.6;
+  }
+  .cover-tag {
+    display: inline-block; margin-top: 14px;
+    background: rgba(33,150,201,0.1); border: 1px solid rgba(33,150,201,0.25);
+    border-radius: 2px; padding: 4px 10px;
+    font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px;
+    color: var(--blue);
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how-section {
+    background: linear-gradient(160deg, var(--sky) 0%, var(--sky-mid) 100%);
+  }
+  .how-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .steps { display: flex; flex-direction: column; gap: 0; margin-top: 48px; }
+  .step {
+    display: flex; gap: 24px; padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900;
+    color: var(--blue); opacity: 0.2; line-height: 1; flex-shrink: 0; width: 52px;
+  }
+  .step-body h4 {
+    font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 1px;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .step-body p { font-size: 14px; color: var(--ink-light); line-height: 1.6; }
+
+  .how-visual {
+    background: var(--white);
+    border-radius: 12px; border: 1px solid var(--border-mid);
+    padding: 40px; box-shadow: 0 20px 60px rgba(33,150,201,0.1);
+  }
+  .signal-mock {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .signal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 14px; border-bottom: 1px solid var(--border);
+  }
+  .signal-title {
+    font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2px; color: var(--ink);
+  }
+  .signal-badge {
+    background: rgba(99,153,34,0.1); border: 1px solid rgba(99,153,34,0.3);
+    border-radius: 2px; padding: 3px 10px;
+    font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--rich);
+  }
+  .signal-row {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Space Mono', monospace; font-size: 11px;
+  }
+  .signal-row .lbl { color: var(--ink-light); letter-spacing: 1px; }
+  .signal-row .val { color: var(--ink); font-weight: 700; }
+  .signal-row .val.long { color: var(--rich); }
+  .signal-row .val.short { color: var(--rekt); }
+  .signal-divider { height: 1px; background: var(--border); }
+  .signal-footer {
+    margin-top: 6px; padding-top: 14px; border-top: 1px solid var(--border);
+    font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px;
+    color: var(--ink-light); text-align: center;
+  }
+
+  /* ── PRICING ── */
+  .pricing-section { background: var(--white); }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px; margin-top: 60px; max-width: 1100px; margin-left: auto; margin-right: auto;
+    align-items: start;
+  }
+  .price-card {
+    border-radius: 10px; padding: 44px 36px;
+    border: 1px solid var(--border-mid); background: var(--sky);
+    position: relative; overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .price-card:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(33,150,201,0.15); }
+  .price-card.featured {
+    background: var(--blue-xdark); border-color: var(--blue);
+    color: #fff;
+  }
+  .featured-badge {
+    position: absolute; top: 20px; right: -28px;
+    background: var(--blue); color: #fff;
+    font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px;
+    padding: 5px 40px; transform: rotate(45deg);
+  }
+  .plan-tier {
+    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 4px;
+    color: var(--blue); text-transform: uppercase; margin-bottom: 12px;
+    display: block;
+  }
+  .price-card.featured .plan-tier { color: var(--sky-deep); }
+  .plan-name {
+    font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900;
+    color: var(--ink); margin-bottom: 24px; line-height: 1.1;
+  }
+  .price-card.featured .plan-name { color: #fff; }
+  .plan-price {
+    display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px;
+  }
+  .plan-price .currency {
+    font-family: 'Space Mono', monospace; font-size: 18px; color: var(--ink-light);
+  }
+  .price-card.featured .plan-price .currency { color: rgba(255,255,255,0.5); }
+  .plan-price .amount {
+    font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900;
+    color: var(--ink); line-height: 1;
+  }
+  .price-card.featured .plan-price .amount { color: #fff; }
+  .plan-price .period {
+    font-family: 'Space Mono', monospace; font-size: 11px; color: var(--ink-light);
+  }
+  .price-card.featured .plan-price .period { color: rgba(255,255,255,0.5); }
+  .plan-desc {
+    font-size: 13px; color: var(--ink-light); margin-bottom: 28px; line-height: 1.6;
+  }
+  .price-card.featured .plan-desc { color: rgba(255,255,255,0.65); }
+  .plan-divider { height: 1px; background: var(--border); margin-bottom: 28px; }
+  .price-card.featured .plan-divider { background: rgba(255,255,255,0.1); }
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+  .plan-features li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 14px; color: var(--ink); line-height: 1.5;
+  }
+  .price-card.featured .plan-features li { color: rgba(255,255,255,0.85); }
+  .check {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: rgba(33,150,201,0.12); border: 1px solid rgba(33,150,201,0.3);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+    font-size: 9px; color: var(--blue);
+  }
+  .price-card.featured .check {
+    background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff;
+  }
+  .plan-btn {
+    display: block; width: 100%; text-align: center; text-decoration: none;
+    padding: 16px; border-radius: 4px;
+    font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px;
+    transition: all 0.2s;
+  }
+  .plan-btn-outline {
+    border: 1.5px solid var(--blue); color: var(--blue); background: transparent;
+  }
+  .plan-btn-outline:hover { background: var(--blue); color: #fff; }
+  .plan-btn-solid {
+    background: var(--blue); color: #fff; border: none;
+    box-shadow: 0 4px 20px rgba(33,150,201,0.4);
+  }
+  .plan-btn-solid:hover { background: #fff; color: var(--blue-xdark); }
+  .plan-btn-white {
+    background: #fff; color: var(--blue-xdark); border: none;
+  }
+  .plan-btn-white:hover { background: var(--sky-deep); }
+
+  /* ── TESTIMONIALS ── */
+  .testi-section {
+    background: linear-gradient(160deg, var(--sky) 0%, var(--sky-mid) 100%);
+  }
+  .testi-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px; margin-top: 60px; max-width: 1100px; margin-left: auto; margin-right: auto;
+  }
+  .testi-card {
+    background: var(--white); border-radius: 8px;
+    border: 1px solid var(--border); padding: 32px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .testi-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(33,150,201,0.1); }
+  .testi-stars { color: #f5a623; font-size: 14px; margin-bottom: 16px; letter-spacing: 2px; }
+  .testi-quote {
+    font-size: 15px; color: var(--ink); line-height: 1.7; margin-bottom: 20px;
+    font-style: italic;
+  }
+  .testi-author {
+    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--ink-light);
+  }
+  .testi-author span { color: var(--blue); }
+
+  /* ── FAQ ── */
+  .faq-section { background: var(--white); }
+  .faq-inner { max-width: 760px; margin: 60px auto 0; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0; cursor: pointer;
+  }
+  .faq-q {
+    font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700;
+    color: var(--ink); display: flex; justify-content: space-between; align-items: center;
+    letter-spacing: 0.5px;
+  }
+  .faq-icon { color: var(--blue); font-size: 18px; transition: transform 0.2s; flex-shrink: 0; margin-left: 16px; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-a {
+    font-size: 14px; color: var(--ink-light); line-height: 1.7;
+    max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s;
+    padding-top: 0;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding-top: 14px; }
+
+  /* ── CTA FOOTER ── */
+  .cta-section {
+    background: var(--blue-xdark); padding: 100px 40px;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+  .cta-section .section-label { color: var(--sky-deep); }
+  .cta-section .section-title { color: #fff; }
+  .cta-section .section-body { color: rgba(255,255,255,0.6); margin: 0 auto 40px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); padding: 48px 40px 32px;
+    display: flex; flex-direction: column; align-items: center; gap: 24px;
+  }
+  .footer-logo {
+    font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 3px; color: rgba(255,255,255,0.4);
+  }
+  .footer-logo .rekt { color: var(--rekt); }
+  .footer-logo .rich { color: var(--rich); }
+  .footer-links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
+  .footer-links a {
+    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+  .footer-copy {
+    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px;
+    color: rgba(255,255,255,0.2); text-align: center;
+  }
+  .footer-disclaimer {
+    font-size: 11px; color: rgba(255,255,255,0.2); text-align: center; max-width: 640px; line-height: 1.6;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(32px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 70px 20px; }
+    .how-inner { grid-template-columns: 1fr; gap: 48px; }
+    footer { padding: 40px 20px 28px; }
+    .cta-section { padding: 70px 20px; }
+    .mentorship-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .form-name-row { grid-template-columns: 1fr !important; }
+    .form-select-row { grid-template-columns: 1fr !important; }
+    .form-footer-row { flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
+    .form-footer-row button { width: 100% !important; text-align: center !important; }
+  }
+  /* ── STICKY BAR ── */
+  .sticky-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+    background: var(--blue-xdark);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 14px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+  }
+  .sticky-bar.visible { transform: translateY(0); }
+  .sticky-bar-left {
+    display: flex; align-items: center; gap: 16px;
+  }
+  .sticky-bar-logo {
+    font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2px;
+    color: rgba(255,255,255,0.5);
+  }
+  .sticky-bar-logo .rekt { color: var(--rekt); }
+  .sticky-bar-logo .rich { color: var(--rich); }
+  .sticky-bar-tagline {
+    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    color: rgba(255,255,255,0.35);
+  }
+  .sticky-bar-right { display: flex; align-items: center; gap: 12px; }
+  .sticky-bar-price {
+    font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px;
+    color: rgba(255,255,255,0.4);
+  }
+  .sticky-bar-btn {
+    background: var(--blue); color: #fff;
+    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    padding: 10px 22px; border-radius: 3px; text-decoration: none;
+    transition: background 0.2s; white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(33,150,201,0.4);
+  }
+  .sticky-bar-btn:hover { background: var(--blue-dark); }
+  @media (max-width: 768px) {
+    .sticky-bar { padding: 12px 20px; }
+    .sticky-bar-tagline { display: none; }
+    .sticky-bar-price { display: none; }
+  }
+
+  /* ── TRACK RECORD ── */
+  .track-section { background: var(--white); }
+  .track-table-wrap {
+    margin-top: 52px; overflow-x: auto;
+    border: 1px solid var(--border-mid); border-radius: 10px;
+    max-width: 1100px; margin-left: auto; margin-right: auto; margin-top: 52px;
+  }
+  .track-table {
+    width: 100%; border-collapse: collapse; font-family: 'Space Mono', monospace;
+  }
+  .track-table thead tr {
+    background: var(--blue-xdark);
+  }
+  .track-table thead th {
+    font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,0.5);
+    padding: 14px 20px; text-align: left; font-weight: 400; white-space: nowrap;
+  }
+  .track-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .track-table tbody tr:last-child { border-bottom: none; }
+  .track-table tbody tr:hover { background: var(--sky); }
+  .track-table td {
+    font-size: 12px; padding: 14px 20px; color: var(--ink); white-space: nowrap;
+  }
+  .track-table td.muted { color: var(--ink-light); }
+  .dir-long {
+    color: var(--rich); background: rgba(99,153,34,0.08);
+    border: 1px solid rgba(99,153,34,0.2); border-radius: 2px;
+    padding: 3px 8px; font-size: 9px; letter-spacing: 1px;
+  }
+  .dir-short {
+    color: var(--rekt); background: rgba(226,75,74,0.08);
+    border: 1px solid rgba(226,75,74,0.2); border-radius: 2px;
+    padding: 3px 8px; font-size: 9px; letter-spacing: 1px;
+  }
+  .result-win { color: var(--rich); font-weight: 700; }
+  .result-loss { color: var(--rekt); font-weight: 700; }
+  .track-stats {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px; margin-top: 24px; max-width: 1100px;
+    margin-left: auto; margin-right: auto;
+  }
+  .track-stat {
+    background: var(--sky); border: 1px solid var(--border-mid);
+    border-radius: 8px; padding: 20px 24px; text-align: center;
+  }
+  .track-stat-num {
+    font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900;
+    color: var(--ink); line-height: 1; margin-bottom: 6px;
+  }
+  .track-stat-num.green { color: var(--rich); }
+  .track-stat-num.blue { color: var(--blue); }
+  .track-stat-label {
+    font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px;
+    color: var(--ink-light);
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar" id="sticky-bar">
+  <div class="sticky-bar-left">
+    <div class="sticky-bar-logo"><span class="rekt">REKT</span> OR <span class="rich">RICH</span></div>
+    <div class="sticky-bar-tagline">FUTURES &amp; FOREX SIGNALS · LIVE ON TELEGRAM</div>
+  </div>
+  <div class="sticky-bar-right">
+    <div class="sticky-bar-price">FROM $99 / WEEK</div>
+    <a href="#pricing" class="sticky-bar-btn">JOIN NOW →</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="rekt">REKT</span>
+    <span class="sep">&nbsp;OR&nbsp;</span>
+    <span class="rich">RICH</span>
+    <span style="color:var(--ink-light);font-weight:400;">&nbsp;· SIGNALS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#markets">MARKETS</a></li>
+    <li><a href="#how">HOW IT WORKS</a></li>
+    <li><a href="#pricing">PRICING</a></li>
+    <li><a href="#mentorship">MENTORSHIP</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#pricing" class="nav-cta">JOIN NOW</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+
+  <!-- Decorative chart lines -->
+  <svg class="hero-chart" viewBox="0 0 1440 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polyline points="0,600 80,560 160,520 260,540 340,460 440,400 540,420 640,340 720,360 820,280 920,300 1020,220 1120,240 1220,160 1320,180 1440,100"
+      fill="none" stroke="#639922" stroke-width="1.5" opacity="0.18"/>
+    <polygon points="0,600 80,560 160,520 260,540 340,460 440,400 540,420 640,340 720,360 820,280 920,300 1020,220 1120,240 1220,160 1320,180 1440,100 1440,800 0,800"
+      fill="#639922" opacity="0.04"/>
+    <polyline points="0,200 80,240 160,220 260,280 340,260 440,320 540,300 640,380 720,360 820,440 920,420 1020,500 1120,480 1220,560 1320,540 1440,620"
+      fill="none" stroke="#E24B4A" stroke-width="1.5" opacity="0.18"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="live-pill">
+      <div class="pulse-dot"></div>
+      LIVE SIGNALS · FUTURES &amp; FOREX
+    </div>
+
+    <!-- Banner from uploaded SVG -->
+    <div class="banner-wrap">
+      <svg width="100%" viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M28 0L0 0L0 28" fill="none" stroke="#ffffff" stroke-width="0.3"/>
+          </pattern>
+          <mask id="imagine-text-gaps-kxv9zg" maskUnits="userSpaceOnUse">
+            <rect x="0" y="0" width="680" height="230" fill="white"/>
+            <rect x="133.890625" y="49.140625" width="192.21875" height="74.453125" fill="black" rx="2"/>
+            <rect x="326.171875" y="83.921875" width="27.65625" height="19.15625" fill="black" rx="2"/>
+            <rect x="360.46875" y="49.140625" width="183.0625" height="74.453125" fill="black" rx="2"/>
+            <rect x="169.09375" y="129.78125" width="341.8125" height="16.828125" fill="black" rx="2"/>
+            <rect x="306.96875" y="189.171875" width="66.0625" height="15.078125" fill="black" rx="2"/>
+            <rect x="29.65625" y="10.640625" width="32.6875" height="14.484375" fill="black" rx="2"/>
+            <rect x="617.65625" y="10.640625" width="32.6875" height="14.484375" fill="black" rx="2"/>
+            <rect x="323.953125" y="159.703125" width="38.09375" height="15.65625" fill="black" rx="2"/>
+          </mask>
+        </defs>
+        <rect width="680" height="220" fill="#080808"/>
+        <rect width="680" height="220" fill="url(#grid)" opacity="0.06"/>
+        <polyline points="20,18 55,22 80,30 100,28 120,50 140,44 155,80 170,70 185,115 195,105 210,150 215,145 220,175" fill="none" stroke="#E24B4A" stroke-width="2" opacity="0.85" mask="url(#imagine-text-gaps-kxv9zg)"/>
+        <polygon points="20,18 55,22 80,30 100,28 120,50 140,44 155,80 170,70 185,115 195,105 210,150 215,145 220,175 220,210 20,210" fill="#E24B4A" opacity="0.06"/>
+        <polyline points="460,175 475,165 490,170 510,140 530,150 550,108 565,120 580,80 600,92 620,52 640,62 660,28" fill="none" stroke="#639922" stroke-width="2" opacity="0.85" mask="url(#imagine-text-gaps-kxv9zg)"/>
+        <polygon points="460,175 475,165 490,170 510,140 530,150 550,108 565,120 580,80 600,92 620,52 640,62 660,28 660,210 460,210" fill="#639922" opacity="0.06"/>
+        <line x1="0" y1="55" x2="680" y2="55" stroke="#1a1a1a" stroke-width="1" mask="url(#imagine-text-gaps-kxv9zg)"/>
+        <line x1="0" y1="110" x2="680" y2="110" stroke="#1a1a1a" stroke-width="1" mask="url(#imagine-text-gaps-kxv9zg)"/>
+        <line x1="0" y1="165" x2="680" y2="165" stroke="#1a1a1a" stroke-width="1" mask="url(#imagine-text-gaps-kxv9zg)"/>
+        <line x1="340" y1="0" x2="340" y2="220" stroke="#222" stroke-width="1" stroke-dasharray="4,4" mask="url(#imagine-text-gaps-kxv9zg)"/>
+        <text x="230" y="108" font-family="Georgia, serif" font-size="62" font-weight="700" fill="#E24B4A" text-anchor="middle" letter-spacing="-1">REKT</text>
+        <text x="340" y="98" font-family="monospace" font-size="13" fill="#444" text-anchor="middle" letter-spacing="4">OR</text>
+        <text x="452" y="108" font-family="Georgia, serif" font-size="62" font-weight="700" fill="#639922" text-anchor="middle" letter-spacing="-1">RICH</text>
+        <line x1="150" y1="120" x2="530" y2="120" stroke="#222" stroke-width="0.8" mask="url(#imagine-text-gaps-kxv9zg)"/>
+        <text x="340" y="142" font-family="monospace" font-size="11" fill="#444" text-anchor="middle" letter-spacing="3">FUTURES TRADING — LIVE &amp; UNFILTERED</text>
+        <text x="340" y="200" font-family="monospace" font-size="9.5" fill="#333" text-anchor="middle" letter-spacing="3">NQ · GC</text>
+        <rect x="22" y="8" width="48" height="18" rx="2" fill="#E24B4A" opacity="0.15"/>
+        <rect x="22" y="8" width="48" height="18" rx="2" fill="none" stroke="#E24B4A" stroke-width="0.8"/>
+        <text x="46" y="21" font-family="monospace" font-size="9" fill="#E24B4A" text-anchor="middle" letter-spacing="1">REKT</text>
+        <rect x="610" y="8" width="48" height="18" rx="2" fill="#639922" opacity="0.15"/>
+        <rect x="610" y="8" width="48" height="18" rx="2" fill="none" stroke="#639922" stroke-width="0.8"/>
+        <text x="634" y="21" font-family="monospace" font-size="9" fill="#639922" text-anchor="middle" letter-spacing="1">RICH</text>
+        <rect x="300" y="155" width="80" height="22" rx="2" fill="#E24B4A"/>
+        <circle cx="311" cy="166" r="4" fill="#FF8080">
+          <animate attributeName="opacity" values="1;0.2;1" dur="1s" repeatCount="indefinite"/>
+        </circle>
+        <text x="343" y="171" font-family="monospace" font-size="10" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="2">LIVE</text>
+      </svg>
+    </div>
+
+    <p class="hero-tagline">
+      Precision signals across Futures &amp; Forex — delivered live, no fluff, no delay.<br>
+      You either get <span style="color:var(--rich);font-weight:500;">RICH</span> or you learn why you got <span style="color:var(--rekt);font-weight:500;">REKT</span>.
+    </p>
+    <div class="hero-btns">
+      <a href="#pricing" class="btn-primary">VIEW PLANS</a>
+      <a href="#how" class="btn-outline">HOW IT WORKS</a>
+    </div>
+  </div>
+
+  <a href="#markets" class="scroll-arrow">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 9l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    SCROLL
+  </a>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-track" id="ticker">
+    <span class="ticker-item">LOADING LIVE DATA <span class="ticker-sep">·</span> <span class="up">...</span></span>
+  </div>
+</div>
+
+<!-- MARKETS WE COVER -->
+<section class="cover-section" id="markets">
+  <div style="max-width:1100px;margin:0 auto;">
+    <span class="section-label">WHAT WE TRADE</span>
+    <h2 class="section-title">Two asset classes.<br>Zero guesswork.</h2>
+    <p class="section-body">We trade the most liquid and high-conviction setups across Futures and Forex — every signal backed by real analysis and real experience.</p>
+
+    <div class="cover-grid">
+      <div class="cover-card">
+        <span class="cover-icon">📈</span>
+        <div class="cover-name">NQ — NASDAQ 100</div>
+        <p class="cover-desc">Nasdaq 100 E-mini futures. High volatility, massive intraday moves. The playground of serious futures traders.</p>
+        <span class="cover-tag">EQUITY FUTURES</span>
+      </div>
+      <div class="cover-card">
+        <span class="cover-icon">🥇</span>
+        <div class="cover-name">GC — GOLD</div>
+        <p class="cover-desc">Gold futures — the ultimate safe haven and momentum market. Clean structure, reliable levels, consistent signals.</p>
+        <span class="cover-tag">COMMODITY FUTURES</span>
+      </div>
+      <div class="cover-card">
+        <span class="cover-icon">💱</span>
+        <div class="cover-name">FOREX MAJORS</div>
+        <p class="cover-desc">EUR/USD, GBP/USD, GBP/JPY and more. The deepest liquidity in the world — we find the setups that others miss.</p>
+        <span class="cover-tag">FOREX</span>
+      </div>
+      <div class="cover-card">
+        <span class="cover-icon">📡</span>
+        <div class="cover-name">LIVE ALERTS</div>
+        <p class="cover-desc">Every signal lands in your Telegram in real time — entry, stop, and targets — so you're never late to the move.</p>
+        <span class="cover-tag">REAL TIME</span>
+      </div>
+      <div class="cover-card">
+        <span class="cover-icon">🧠</span>
+        <div class="cover-name">TRADE RECAPS</div>
+        <p class="cover-desc">Win or lose, we break down every trade after the session so you understand the logic and level up your own reading.</p>
+        <span class="cover-tag">EDUCATION</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <div>
+      <span class="section-label">THE PROCESS</span>
+      <h2 class="section-title">Simple.<br>Surgical.<br>Profitable.</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h4>JOIN THE TELEGRAM</h4>
+            <p>Subscribe and you're in immediately. The signal feed is live, clean, and no-BS.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h4>RECEIVE YOUR SIGNAL</h4>
+            <p>Entry zone, stop loss, and up to 3 targets — every single trade, formatted identically.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h4>EXECUTE &amp; MANAGE</h4>
+            <p>Place the trade. We'll call updates live during the session if levels change.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <h4>REVIEW THE RECAP</h4>
+            <p>End-of-session breakdown of every trade. Understand the why behind every entry.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signal mock-up -->
+    <div class="how-visual">
+      <div class="signal-mock">
+        <div class="signal-header">
+          <span class="signal-title">🔔 SIGNAL · NQ</span>
+          <span class="signal-badge">LONG</span>
+        </div>
+        <div class="signal-row">
+          <span class="lbl">ENTRY ZONE</span>
+          <span class="val">19,840 – 19,860</span>
+        </div>
+        <div class="signal-divider"></div>
+        <div class="signal-row">
+          <span class="lbl">DIRECTION</span>
+          <span class="val long">▲ LONG</span>
+        </div>
+        <div class="signal-divider"></div>
+        <div class="signal-row">
+          <span class="lbl">STOP LOSS</span>
+          <span class="val short">19,780</span>
+        </div>
+        <div class="signal-divider"></div>
+        <div class="signal-row">
+          <span class="lbl">TARGET 1</span>
+          <span class="val long">19,940</span>
+        </div>
+        <div class="signal-row">
+          <span class="lbl">TARGET 2</span>
+          <span class="val long">20,020</span>
+        </div>
+        <div class="signal-row">
+          <span class="lbl">TARGET 3</span>
+          <span class="val long">20,100</span>
+        </div>
+        <div class="signal-divider"></div>
+        <div class="signal-row">
+          <span class="lbl">R:R RATIO</span>
+          <span class="val">1 : 2.6</span>
+        </div>
+        <div class="signal-footer">
+          REKT OR RICH SIGNALS · FUTURES &amp; FOREX · LIVE
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="center">
+      <span class="section-label">PRICING</span>
+      <h2 class="section-title">Choose your lane.</h2>
+      <p class="section-body">No contracts. Cancel anytime. Your edge, your terms.</p>
+    </div>
+
+    <div class="pricing-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+
+      <!-- Weekly -->
+      <div class="price-card">
+        <span class="plan-tier">STARTER</span>
+        <div class="plan-name">Weekly Access</div>
+        <div class="plan-price">
+          <span class="currency">$</span>
+          <span class="amount">99</span>
+          <span class="period">/ week</span>
+        </div>
+        <p class="plan-desc">Dip your toes in. One full week of live signals across Futures &amp; Forex.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span>Live Futures &amp; Forex signals</li>
+          <li><span class="check">✓</span>Entry, stop &amp; 3 targets per trade</li>
+          <li><span class="check">✓</span>Telegram signal feed access</li>
+          <li><span class="check">✓</span>End-of-day trade recaps</li>
+        </ul>
+        <a href="#" class="plan-btn plan-btn-outline">GET STARTED</a>
+      </div>
+
+      <!-- Monthly FEATURED -->
+      <div class="price-card featured">
+        <div class="featured-badge">POPULAR</div>
+        <span class="plan-tier">BEST VALUE</span>
+        <div class="plan-name">Monthly Access</div>
+        <div class="plan-price">
+          <span class="currency">$</span>
+          <span class="amount">250</span>
+          <span class="period">/ month</span>
+        </div>
+        <p class="plan-desc">The most popular plan. Serious traders, serious signals, maximum consistency.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span>Everything in Weekly</li>
+          <li><span class="check">✓</span>Priority Telegram access</li>
+          <li><span class="check">✓</span>Monthly performance report</li>
+          <li><span class="check">✓</span>Live session commentary</li>
+          <li><span class="check">✓</span>Multi-market trade breakdowns</li>
+        </ul>
+        <a href="#" class="plan-btn plan-btn-solid">JOIN NOW</a>
+      </div>
+
+      <!-- 3 Month -->
+      <div class="price-card">
+        <span class="plan-tier">COMMITTED</span>
+        <div class="plan-name">3-Month Block</div>
+        <div class="plan-price">
+          <span class="currency">$</span>
+          <span class="amount">649</span>
+          <span class="period">/ 3 months</span>
+        </div>
+        <p class="plan-desc">Built for traders who are serious about building a consistent edge over time.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span>Everything in Monthly</li>
+          <li><span class="check">✓</span>Savings vs monthly rate</li>
+          <li><span class="check">✓</span>Early access to new features</li>
+          <li><span class="check">✓</span>Quarterly performance deep-dive</li>
+        </ul>
+        <a href="#" class="plan-btn plan-btn-outline">GET STARTED</a>
+      </div>
+
+      <!-- 1-on-1 Mentorship -->
+      <div class="price-card" style="border-color: rgba(33,150,201,0.5); background: linear-gradient(135deg, #f0f8ff 0%, #e0f2fc 100%); position:relative;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rekt),var(--blue),var(--rich));border-radius:10px 10px 0 0;"></div>
+        <span class="plan-tier" style="color:var(--blue-xdark);">ELITE</span>
+        <div class="plan-name">1-on-1 Mentorship</div>
+        <div class="plan-price">
+          <span class="currency">$</span>
+          <span class="amount" style="font-size:42px;">3,000</span>
+        </div>
+        <p class="plan-desc">Direct access to our traders. We work with you personally — your charts, your mistakes, your growth.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check" style="background:rgba(13,79,114,0.1);border-color:rgba(13,79,114,0.3);color:var(--blue-xdark);">✓</span>Everything in 3-Month Block</li>
+          <li><span class="check" style="background:rgba(13,79,114,0.1);border-color:rgba(13,79,114,0.3);color:var(--blue-xdark);">✓</span>Dedicated 1-on-1 sessions</li>
+          <li><span class="check" style="background:rgba(13,79,114,0.1);border-color:rgba(13,79,114,0.3);color:var(--blue-xdark);">✓</span>Personal chart &amp; trade reviews</li>
+          <li><span class="check" style="background:rgba(13,79,114,0.1);border-color:rgba(13,79,114,0.3);color:var(--blue-xdark);">✓</span>Custom trading plan built for you</li>
+          <li><span class="check" style="background:rgba(13,79,114,0.1);border-color:rgba(13,79,114,0.3);color:var(--blue-xdark);">✓</span>Direct line to the traders — always</li>
+        </ul>
+        <a href="#" class="plan-btn" style="background:var(--blue-xdark);color:#fff;border:none;box-shadow:0 4px 20px rgba(13,79,114,0.3);">APPLY NOW</a>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;margin-top:32px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--ink-light);">
+      ALL PLANS INCLUDE IMMEDIATE TELEGRAM ACCESS · NO HIDDEN FEES
+    </p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="center">
+      <span class="section-label">COMMUNITY</span>
+      <h2 class="section-title">The results speak.</h2>
+    </div>
+    <div class="testi-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Hit all 3 targets on the NQ long. The entry was called well before the move — I'd been watching that level myself but wasn't confident. These guys were. That's the difference."</p>
+        <div class="testi-author"><span>@FUTURES_MIKE</span> · Monthly Member</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"EUR/USD signal last week was textbook. Tight stop, clean target, and the reasoning behind it actually made sense. I'm not just copying trades — I'm learning why they work."</p>
+        <div class="testi-author"><span>@FX_SARA</span> · 3-Month Member</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"I've tried other services. Most just drop alerts with zero context. Here, every trade comes with a read. The recaps alone have changed how I approach the charts myself."</p>
+        <div class="testi-author"><span>@TRADEWITHSENSE</span> · Monthly Member</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"The 1-on-1 mentorship was worth every penny. They reviewed my actual trades, told me exactly where I was leaking money, and gave me a real framework. Night and day from where I was."</p>
+        <div class="testi-author"><span>@CAPTAIN_CHARTS</span> · Mentorship Member</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK RECORD -->
+<section class="track-section">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="center">
+      <span class="section-label">TRACK RECORD</span>
+      <h2 class="section-title">Recent trade results.</h2>
+      <p class="section-body" style="margin:0 auto 0;">Every trade logged, win or loss. No cherry-picking, no hiding the L's — just the real numbers.</p>
+    </div>
+
+    <div class="track-stats">
+      <div class="track-stat">
+        <div class="track-stat-num green">74%</div>
+        <div class="track-stat-label">WIN RATE</div>
+      </div>
+      <div class="track-stat">
+        <div class="track-stat-num blue">1:2.4</div>
+        <div class="track-stat-label">AVG RISK/REWARD</div>
+      </div>
+      <div class="track-stat">
+        <div class="track-stat-num green">38</div>
+        <div class="track-stat-label">TRADES THIS MONTH</div>
+      </div>
+      <div class="track-stat">
+        <div class="track-stat-num green">+142R</div>
+        <div class="track-stat-label">TOTAL R GAINED (30 DAYS)</div>
+      </div>
+    </div>
+
+    <div class="track-table-wrap">
+      <table class="track-table">
+        <thead>
+          <tr>
+            <th>DATE</th>
+            <th>PAIR</th>
+            <th>DIRECTION</th>
+            <th>ENTRY</th>
+            <th>STOP LOSS</th>
+            <th>TARGET HIT</th>
+            <th>R RESULT</th>
+            <th>RESULT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="muted">Apr 02</td>
+            <td>NQ</td>
+            <td><span class="dir-long">LONG</span></td>
+            <td>19,840</td>
+            <td>19,770</td>
+            <td>T2</td>
+            <td class="result-win">+3.1R</td>
+            <td class="result-win">WIN</td>
+          </tr>
+          <tr>
+            <td class="muted">Apr 02</td>
+            <td>EUR/USD</td>
+            <td><span class="dir-short">SHORT</span></td>
+            <td>1.0842</td>
+            <td>1.0870</td>
+            <td>T1</td>
+            <td class="result-win">+1.2R</td>
+            <td class="result-win">WIN</td>
+          </tr>
+          <tr>
+            <td class="muted">Apr 01</td>
+            <td>GC GOLD</td>
+            <td><span class="dir-long">LONG</span></td>
+            <td>2,298</td>
+            <td>2,278</td>
+            <td>—</td>
+            <td class="result-loss">-1R</td>
+            <td class="result-loss">LOSS</td>
+          </tr>
+          <tr>
+            <td class="muted">Apr 01</td>
+            <td>GBP/JPY</td>
+            <td><span class="dir-long">LONG</span></td>
+            <td>191.40</td>
+            <td>190.80</td>
+            <td>T3</td>
+            <td class="result-win">+4.2R</td>
+            <td class="result-win">WIN</td>
+          </tr>
+          <tr>
+            <td class="muted">Mar 31</td>
+            <td>NQ</td>
+            <td><span class="dir-short">SHORT</span></td>
+            <td>20,120</td>
+            <td>20,200</td>
+            <td>T2</td>
+            <td class="result-win">+2.8R</td>
+            <td class="result-win">WIN</td>
+          </tr>
+          <tr>
+            <td class="muted">Mar 31</td>
+            <td>GBP/USD</td>
+            <td><span class="dir-long">LONG</span></td>
+            <td>1.2640</td>
+            <td>1.2610</td>
+            <td>T1</td>
+            <td class="result-win">+1.1R</td>
+            <td class="result-win">WIN</td>
+          </tr>
+          <tr>
+            <td class="muted">Mar 28</td>
+            <td>GC GOLD</td>
+            <td><span class="dir-short">SHORT</span></td>
+            <td>2,241</td>
+            <td>2,258</td>
+            <td>—</td>
+            <td class="result-loss">-1R</td>
+            <td class="result-loss">LOSS</td>
+          </tr>
+          <tr>
+            <td class="muted">Mar 28</td>
+            <td>EUR/USD</td>
+            <td><span class="dir-long">LONG</span></td>
+            <td>1.0798</td>
+            <td>1.0772</td>
+            <td>T2</td>
+            <td class="result-win">+2.3R</td>
+            <td class="result-win">WIN</td>
+          </tr>
+          <tr>
+            <td class="muted">Mar 27</td>
+            <td>NQ</td>
+            <td><span class="dir-long">LONG</span></td>
+            <td>19,560</td>
+            <td>19,480</td>
+            <td>T3</td>
+            <td class="result-win">+5.1R</td>
+            <td class="result-win">WIN</td>
+          </tr>
+          <tr>
+            <td class="muted">Mar 27</td>
+            <td>USD/JPY</td>
+            <td><span class="dir-short">SHORT</span></td>
+            <td>151.80</td>
+            <td>152.20</td>
+            <td>—</td>
+            <td class="result-loss">-1R</td>
+            <td class="result-loss">LOSS</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="text-align:center;margin-top:20px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--ink-light);">PAST PERFORMANCE DOES NOT GUARANTEE FUTURE RESULTS</p>
+  </div>
+</section>
+
+<!-- MENTORSHIP APPLICATION -->
+<section class="cover-section" id="mentorship" style="background:var(--white);">
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="center">
+      <span class="section-label">ELITE TIER</span>
+      <h2 class="section-title">Work with us directly.</h2>
+      <p class="section-body" style="margin:0 auto 56px;">Spots are intentionally limited. If you're serious about levelling up — not just copying trades but actually understanding them — fill out the form below and we'll be in touch within 48 hours.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:48px;align-items:start;" class="mentorship-grid">
+
+      <!-- Left: what's included -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div style="background:var(--sky);border:1px solid var(--border-mid);border-radius:8px;padding:28px 24px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--blue);margin-bottom:6px;">WHAT YOU GET</div>
+          <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--ink);margin-bottom:4px;">$3,000</div>
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--ink-light);margin-bottom:20px;">ONE-TIME · FULL ACCESS</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:11px;">
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ink);line-height:1.5;">
+              <span style="width:18px;height:18px;border-radius:50%;background:rgba(33,150,201,0.12);border:1px solid rgba(33,150,201,0.3);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--blue);flex-shrink:0;margin-top:1px;">✓</span>
+              Everything in 3-Month Block
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ink);line-height:1.5;">
+              <span style="width:18px;height:18px;border-radius:50%;background:rgba(33,150,201,0.12);border:1px solid rgba(33,150,201,0.3);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--blue);flex-shrink:0;margin-top:1px;">✓</span>
+              Dedicated 1-on-1 sessions
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ink);line-height:1.5;">
+              <span style="width:18px;height:18px;border-radius:50%;background:rgba(33,150,201,0.12);border:1px solid rgba(33,150,201,0.3);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--blue);flex-shrink:0;margin-top:1px;">✓</span>
+              Personal chart &amp; trade reviews
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ink);line-height:1.5;">
+              <span style="width:18px;height:18px;border-radius:50%;background:rgba(33,150,201,0.12);border:1px solid rgba(33,150,201,0.3);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--blue);flex-shrink:0;margin-top:1px;">✓</span>
+              Custom trading plan built for you
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ink);line-height:1.5;">
+              <span style="width:18px;height:18px;border-radius:50%;background:rgba(33,150,201,0.12);border:1px solid rgba(33,150,201,0.3);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--blue);flex-shrink:0;margin-top:1px;">✓</span>
+              Direct line to us on Telegram
+            </li>
+          </ul>
+        </div>
+        <div style="background:var(--sky);border:1px solid var(--border);border-radius:8px;padding:20px 24px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--blue);margin-bottom:10px;">THE PROCESS</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="width:22px;height:22px;border-radius:50%;background:rgba(33,150,201,0.1);border:1px solid rgba(33,150,201,0.25);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:9px;color:var(--blue);flex-shrink:0;">1</div>
+              <span style="font-size:13px;color:var(--ink-mid);line-height:1.5;padding-top:2px;">Submit your application below</span>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="width:22px;height:22px;border-radius:50%;background:rgba(33,150,201,0.1);border:1px solid rgba(33,150,201,0.25);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:9px;color:var(--blue);flex-shrink:0;">2</div>
+              <span style="font-size:13px;color:var(--ink-mid);line-height:1.5;padding-top:2px;">We review &amp; reply within 48 hours</span>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="width:22px;height:22px;border-radius:50%;background:rgba(33,150,201,0.1);border:1px solid rgba(33,150,201,0.25);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:9px;color:var(--blue);flex-shrink:0;">3</div>
+              <span style="font-size:13px;color:var(--ink-mid);line-height:1.5;padding-top:2px;">Payment link sent — you're in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: application form -->
+      <div style="background:var(--sky);border:1px solid var(--border-mid);border-radius:10px;overflow:hidden;">
+        <div style="background:var(--blue-xdark);padding:20px 28px;">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;color:rgba(255,255,255,0.5);margin-bottom:4px;">APPLICATION FORM</div>
+          <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#fff;">1-on-1 Mentorship</div>
+        </div>
+        <div style="padding:28px;display:flex;flex-direction:column;gap:18px;" id="mentorship-form">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="form-name-row">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <label style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--ink-light);">FIRST NAME</label>
+              <input type="text" placeholder="John" id="m-name" style="background:var(--white);border:1px solid var(--border-mid);border-radius:4px;padding:11px 14px;font-size:14px;color:var(--ink);font-family:'DM Sans',sans-serif;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border-mid)'"/>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <label style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--ink-light);">EMAIL</label>
+              <input type="email" placeholder="john@email.com" id="m-email" style="background:var(--white);border:1px solid var(--border-mid);border-radius:4px;padding:11px 14px;font-size:14px;color:var(--ink);font-family:'DM Sans',sans-serif;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border-mid)'"/>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="form-select-row">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <label style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--ink-light);">TRADING EXPERIENCE</label>
+              <select id="m-exp" style="background:var(--white);border:1px solid var(--border-mid);border-radius:4px;padding:11px 14px;font-size:14px;color:var(--ink);font-family:'DM Sans',sans-serif;outline:none;appearance:none;cursor:pointer;">
+                <option value="">Select...</option>
+                <option>Less than 1 year</option>
+                <option>1–2 years</option>
+                <option>3–5 years</option>
+                <option>5+ years</option>
+              </select>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <label style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--ink-light);">MARKETS YOU TRADE</label>
+              <select id="m-market" style="background:var(--white);border:1px solid var(--border-mid);border-radius:4px;padding:11px 14px;font-size:14px;color:var(--ink);font-family:'DM Sans',sans-serif;outline:none;appearance:none;cursor:pointer;">
+                <option value="">Select...</option>
+                <option>Forex only</option>
+                <option>Futures only</option>
+                <option>Both Forex &amp; Futures</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <label style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--ink-light);">BIGGEST STRUGGLE RIGHT NOW</label>
+            <textarea id="m-struggle" placeholder="e.g. I have a solid strategy but I keep revenge trading after losses..." rows="3" style="background:var(--white);border:1px solid var(--border-mid);border-radius:4px;padding:11px 14px;font-size:14px;color:var(--ink);font-family:'DM Sans',sans-serif;outline:none;resize:none;transition:border 0.2s;line-height:1.5;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border-mid)'"></textarea>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <label style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--ink-light);">WHAT ARE YOU HOPING TO ACHIEVE?</label>
+            <textarea id="m-goal" placeholder="e.g. I want to build real consistency and stop second-guessing my entries..." rows="3" style="background:var(--white);border:1px solid var(--border-mid);border-radius:4px;padding:11px 14px;font-size:14px;color:var(--ink);font-family:'DM Sans',sans-serif;outline:none;resize:none;transition:border 0.2s;line-height:1.5;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border-mid)'"></textarea>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding-top:4px;" class="form-footer-row">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-light);">We review every application personally.</span>
+            <button onclick="submitMentorship()" style="background:var(--blue);color:#fff;border:none;border-radius:4px;padding:13px 28px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='var(--blue-dark)'" onmouseout="this.style.background='var(--blue)'">SUBMIT APPLICATION</button>
+          </div>
+        </div>
+        <div id="mentorship-success" style="display:none;padding:48px 28px;text-align:center;">
+          <div style="font-size:32px;margin-bottom:16px;">✅</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--ink);margin-bottom:10px;">Application received.</div>
+          <p style="font-size:15px;color:var(--ink-light);line-height:1.6;">Thanks for applying. We'll review your application and get back to you within 48 hours via email.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="center">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Got questions?</h2>
+    </div>
+
+    <div class="faq-inner">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">What markets do you cover? <span class="faq-icon">+</span></div>
+        <div class="faq-a">We cover both Futures (NQ — Nasdaq 100 and GC — Gold) and Forex majors including EUR/USD, GBP/USD, GBP/JPY and more. Two asset classes, one focused service.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How are signals delivered? <span class="faq-icon">+</span></div>
+        <div class="faq-a">All signals are posted live in our private Telegram channel. You'll get entry zone, stop loss, and up to 3 profit targets with every trade — plus live updates if levels shift during the session.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">What are your trading hours? <span class="faq-icon">+</span></div>
+        <div class="faq-a">For Futures we primarily focus on the New York session (9:30 AM – 4:00 PM EST). For Forex we cover London and New York sessions where the best setups form. Pre-market signals are posted when warranted.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Can I cancel anytime? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes, absolutely. There are no contracts or lock-ins. Cancel before your next billing date and you won't be charged again.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Do I need prior trading experience? <span class="faq-icon">+</span></div>
+        <div class="faq-a">You should have at least a basic understanding of futures or forex trading before subscribing. Our signals include the reasoning behind each trade, but this isn't a beginner course — it's a professional service.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">What's included in the 1-on-1 Mentorship? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Direct, personal access to our traders. We review your charts, break down your trades, identify where you're losing money, and build a framework tailored to you. This is hands-on coaching, not a course.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Is this financial advice? <span class="faq-icon">+</span></div>
+        <div class="faq-a">No. REKT OR RICH Signals provides trade ideas for informational and educational purposes only. Trading futures and forex involves significant risk. Always manage your own risk.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <div style="position:relative;z-index:2;">
+    <span class="section-label">READY?</span>
+    <h2 class="section-title" style="color:#fff;">You're one trade away<br>from finding out.</h2>
+    <p class="section-body" style="color:rgba(255,255,255,0.55);">Join traders who stopped gambling on gut feeling and started following a proven process. Live signals across Futures &amp; Forex, real accountability, zero fluff.</p>
+    <a href="#pricing" class="btn-primary" style="display:inline-block;font-size:12px;">CHOOSE YOUR PLAN →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <span class="rekt">REKT</span> OR <span class="rich">RICH</span> · SIGNALS
+  </div>
+  <div class="footer-links">
+    <a href="#">MARKETS</a>
+    <a href="#">HOW IT WORKS</a>
+    <a href="#">PRICING</a>
+    <a href="#">TELEGRAM</a>
+    <a href="#">FAQ</a>
+    <a href="#">TERMS</a>
+  </div>
+  <p class="footer-disclaimer">
+    Trading futures and forex involves substantial risk of loss and is not appropriate for all investors. Past performance is not indicative of future results. REKT OR RICH Signals provides trade ideas for informational purposes only and does not constitute financial advice.
+  </p>
+  <p class="footer-copy">© 2025 REKT OR RICH SIGNALS. ALL RIGHTS RESERVED.</p>
+</footer>
+
+<script>
+  async function submitMentorship() {
+    const name = document.getElementById('m-name').value.trim();
+    const email = document.getElementById('m-email').value.trim();
+    const exp = document.getElementById('m-exp').value;
+    const market = document.getElementById('m-market').value;
+    const struggle = document.getElementById('m-struggle').value.trim();
+    const goal = document.getElementById('m-goal').value.trim();
+    if (!name || !email || !exp || !market || !struggle || !goal) {
+      alert('Please fill in all fields before submitting.');
+      return;
+    }
+    const btn = document.querySelector('#mentorship-form button');
+    btn.textContent = 'SENDING...';
+    btn.style.opacity = '0.6';
+    btn.style.pointerEvents = 'none';
+    try {
+      const res = await fetch('https://formspree.io/f/xojpkklr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name, email,
+          experience: exp,
+          markets: market,
+          struggle, goal
+        })
+      });
+      if (res.ok) {
+        document.getElementById('mentorship-form').style.display = 'none';
+        document.getElementById('mentorship-success').style.display = 'block';
+      } else {
+        btn.textContent = 'SUBMIT APPLICATION';
+        btn.style.opacity = '1';
+        btn.style.pointerEvents = 'auto';
+        alert('Something went wrong. Please try again or contact us directly.');
+      }
+    } catch(e) {
+      btn.textContent = 'SUBMIT APPLICATION';
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'auto';
+      alert('Connection error. Please check your internet and try again.');
+    }
+  }
+
+  function toggleFaq(el) {
+    const wasOpen = el.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) el.classList.add('open');
+  }
+
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.cover-card, .testi-card, .price-card, .step').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+  // ── STICKY BAR ──
+  const stickyBar = document.getElementById('sticky-bar');
+  const heroSection = document.querySelector('.hero');
+  const stickyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) {
+        stickyBar.classList.add('visible');
+      } else {
+        stickyBar.classList.remove('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  stickyObserver.observe(heroSection);
+
+  // ── LIVE TICKER ──
+  const TWELVE_KEY = 'a6af61d79085440a9d158ef5cf2bc4f8';
+  const SYMBOLS = [
+    { symbol: 'NQ/USD',  label: 'NQ FUTURES', jpyFlag: false, futuresFlag: true  },
+    { symbol: 'XAU/USD', label: 'GC GOLD',    jpyFlag: false, futuresFlag: false },
+    { symbol: 'EUR/USD', label: 'EUR/USD',    jpyFlag: false, futuresFlag: false },
+    { symbol: 'GBP/USD', label: 'GBP/USD',    jpyFlag: false, futuresFlag: false },
+    { symbol: 'GBP/JPY', label: 'GBP/JPY',    jpyFlag: true,  futuresFlag: false },
+    { symbol: 'USD/JPY', label: 'USD/JPY',    jpyFlag: true,  futuresFlag: false },
+  ];
+
+  const FALLBACK = [
+    { label: 'NQ FUTURES', pct: +1.24, price: '19,842' },
+    { label: 'GC GOLD',    pct: +0.87, price: '2,341.5' },
+    { label: 'EUR/USD',    pct: +0.42, price: '1.0845' },
+    { label: 'GBP/USD',    pct: +0.31, price: '1.2673' },
+    { label: 'GBP/JPY',   pct: -0.18, price: '191.24' },
+    { label: 'USD/JPY',   pct: -0.22, price: '148.63' },
+  ];
+
+  function makeItem(label, pct, price) {
+    const dir = pct >= 0 ? 'up' : 'dn';
+    const arrow = pct >= 0 ? '▲' : '▼';
+    const sign = pct >= 0 ? '+' : '';
+    return `<span class="ticker-item">${label} <span class="ticker-sep">·</span> <span class="${dir}">${arrow} ${sign}${pct.toFixed(2)}%</span> <span class="ticker-sep">·</span> ${price}</span>`;
+  }
+
+  function buildTickerHTML(items) {
+    const staticItems = [
+      `<span class="ticker-item">SIGNALS TODAY <span class="ticker-sep">·</span> <span class="up">LIVE</span></span>`,
+      `<span class="ticker-item">WIN RATE <span class="ticker-sep">·</span> <span class="up">74%</span></span>`,
+    ];
+    const all = [...items, ...staticItems, ...items, ...staticItems];
+    return all.join('');
+  }
+
+  function loadFallback() {
+    const items = FALLBACK.map(f => makeItem(f.label, f.pct, f.price));
+    document.getElementById('ticker').innerHTML = buildTickerHTML(items);
+  }
+
+  async function fetchTicker() {
+    const syms = SYMBOLS.map(s => s.symbol).join(',');
+    try {
+      const res = await fetch(
+        `https://api.twelvedata.com/quote?symbol=${syms}&apikey=${TWELVE_KEY}`,
+        { mode: 'cors' }
+      );
+      if (!res.ok) { loadFallback(); return; }
+      const data = await res.json();
+      const items = SYMBOLS.map(({ symbol, label, jpyFlag, futuresFlag }) => {
+        const q = data[symbol];
+        if (!q || q.status === 'error' || !q.percent_change) return null;
+        const pct = parseFloat(q.percent_change);
+        const rawPrice = parseFloat(q.close || q.price || 0);
+        const decimals = futuresFlag ? 0 : jpyFlag ? 2 : 4;
+        const price = rawPrice.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+        return makeItem(label, pct, price);
+      }).filter(Boolean);
+
+      if (items.length >= 3) {
+        document.getElementById('ticker').innerHTML = buildTickerHTML(items);
+      } else {
+        loadFallback();
+      }
+    } catch(e) {
+      loadFallback();
+    }
+  }
+
+  loadFallback();
+  fetchTicker();
+  setInterval(fetchTicker, 60000);
+</script>
+</body>
+</html>
