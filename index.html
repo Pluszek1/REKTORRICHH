@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>REKT OR RICH — Limited Drops</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='200' height='210' viewBox='0 0 200 210' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='200' height='200' fill='%23080808'/%3E%3Cpolyline points='15,40 35,48 50,44 62,70 72,62 82,95 90,88 98,118' fill='none' stroke='%23E24B4A' stroke-width='2.2'/%3E%3Cpolyline points='102,118 110,108 120,115 132,85 142,94 155,62 165,72 178,42 192,50' fill='none' stroke='%23639922' stroke-width='2.2'/%3E%3Ccircle cx='100' cy='118' r='3.5' fill='%23ffffff'/%3E%3Ctext x='68' y='175' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23E24B4A' text-anchor='middle'%3ER%3C/text%3E%3Ctext x='132' y='175' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23639922' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E"/>
+<meta name="description" content="Limited drop access for funded account passing and private 1-on-1 trading mentorship. When it fills, it closes."/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --sky: #e8f4fd; --sky-mid: #cce8f8; --sky-deep: #a8d8f0;
+  --blue: #2196c9; --blue-dark: #1470a0; --blue-xdark: #0d4f72;
+  --rekt: #B84A4A; --rich: #639922;
+  --white: #ffffff; --ink: #0e2130; --ink-mid: #2a4a62; --ink-light: #5a7a96;
+  --border: rgba(33,150,201,0.15); --border-mid: rgba(33,150,201,0.3);
+  --glass: rgba(255,255,255,0.75);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px}
+.nav-logo{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:2px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.nav-logo .rekt{color:#B84A4A}.nav-logo .rich{color:var(--rich)}.nav-logo .sep{color:var(--ink-light);font-weight:400}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--ink-mid);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{background:var(--blue);color:#fff;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;padding:10px 20px;border-radius:3px;text-decoration:none;transition:background 0.2s}
+.nav-cta:hover{background:var(--blue-dark)}
+
+/* HERO */
+.hero{min-height:100vh;padding-top:64px;background:linear-gradient(160deg,#f0f8ff 0%,#e4f2fc 40%,#cde8f7 100%);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(33,150,201,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(33,150,201,0.07) 1px,transparent 1px);background-size:36px 36px}
+.hero-chart{position:absolute;inset:0;pointer-events:none}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:0;text-align:center;padding:0 20px}
+.banner-wrap{width:min(680px,92vw);background:#080808;border-radius:6px;overflow:hidden;box-shadow:0 24px 80px rgba(13,79,114,0.25),0 4px 16px rgba(0,0,0,0.12);border:1px solid rgba(255,255,255,0.1);margin-bottom:36px;animation:floatIn 1s cubic-bezier(.22,1,.36,1) both}
+.banner-wrap svg{display:block;width:100%}
+.hero-sub{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--blue);text-transform:uppercase;margin-bottom:16px;animation:fadeUp 0.8s 0.3s both}
+.hero-tagline{font-family:'DM Sans',sans-serif;font-size:clamp(15px,2vw,19px);color:var(--ink-mid);font-weight:300;max-width:540px;line-height:1.6;animation:fadeUp 0.8s 0.5s both;margin-bottom:36px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;animation:fadeUp 0.8s 0.7s both}
+.btn-primary{background:var(--blue);color:#fff;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;padding:16px 36px;border-radius:3px;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(33,150,201,0.35)}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--blue);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;padding:16px 36px;border-radius:3px;text-decoration:none;border:1.5px solid var(--blue-dark);transition:all 0.2s;cursor:pointer}
+.btn-outline:hover{background:var(--sky);transform:translateY(-2px)}
+.drop-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(184,74,74,0.07);border:1px solid rgba(184,74,74,0.22);border-radius:20px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:#B84A4A;margin-bottom:20px;animation:fadeUp 0.8s 0.1s both}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--rekt);animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(0.7)}}
+.scroll-arrow{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--ink-light);animation:bounce 2s infinite;text-decoration:none}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+@keyframes floatIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* TICKER */
+.ticker-bar{background:var(--blue-xdark);padding:12px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05)}
+.ticker-track{display:flex;gap:60px;white-space:nowrap;animation:ticker 28s linear infinite;width:max-content}
+.ticker-item{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:10px}
+.ticker-item .up{color:var(--rich)}.ticker-item .dn{color:#B84A4A}.ticker-sep{color:rgba(255,255,255,0.2)}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTION BASE */
+section{padding:100px 40px}
+.section-label{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--blue);text-transform:uppercase;margin-bottom:16px;display:block}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,68px);font-weight:400;letter-spacing:1px;color:var(--ink);line-height:1.1;margin-bottom:20px}
+.section-body{font-size:17px;color:var(--ink-light);line-height:1.7;max-width:540px}
+.center{text-align:center}.center .section-body{margin:0 auto}
+
+/* DROP STATUS BAR */
+.drop-status-bar{background:linear-gradient(90deg,var(--blue-xdark),#0a3d58);padding:18px 40px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
+.drop-status-item{display:flex;align-items:center;gap:12px}
+.drop-status-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:rgba(255,255,255,0.4);text-transform:uppercase}
+.drop-status-val{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:2px;color:#fff;font-weight:700}
+.drop-status-val.open{color:#7bffae}.drop-status-val.limited{color:#ffc97b}
+.drop-divider{width:1px;height:32px;background:rgba(255,255,255,0.1)}
+
+/* OFFERS */
+.offers-section{background:var(--white)}
+.offers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px;margin-top:60px;max-width:1100px;margin-left:auto;margin-right:auto}
+.offer-card{border-radius:10px;padding:52px 44px;border:1px solid var(--border-mid);background:var(--sky);position:relative;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s}
+.offer-card:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(33,150,201,0.15)}
+.offer-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--sky-deep))}
+.offer-card.featured{background:var(--blue-xdark);border-color:rgba(255,255,255,0.14)}
+.offer-card.featured::before{background:linear-gradient(90deg,var(--rekt),var(--rich))}
+.offer-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px}
+.badge-open{background:rgba(123,255,174,0.1);border:1px solid rgba(123,255,174,0.3);color:#7bffae}
+.badge-limited{background:rgba(255,201,123,0.1);border:1px solid rgba(255,201,123,0.3);color:#ffc97b}
+.offer-card .offer-name{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;line-height:1.04;margin-bottom:16px;color:var(--ink);letter-spacing:-0.02em}
+.offer-card.featured .offer-name{color:#fff}
+.offer-card .offer-desc{font-size:16px;color:var(--ink-mid);line-height:1.75;margin-bottom:28px}
+.offer-card.featured .offer-desc{color:rgba(255,255,255,0.78)}
+.offer-features{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:40px}
+.offer-features li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--ink);line-height:1.5}
+.offer-card.featured .offer-features li{color:rgba(255,255,255,0.9)}
+.check{width:18px;height:18px;border-radius:50%;background:rgba(33,150,201,0.12);border:1px solid rgba(33,150,201,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:9px;color:var(--blue)}
+.offer-card.featured .check{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff}
+.offer-spots{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-radius:8px;background:rgba(255,255,255,0.28);border:1px solid rgba(13,79,114,0.16);margin-bottom:18px;font-family:'Space Mono',monospace;backdrop-filter:blur(8px);box-shadow:0 10px 24px rgba(13,79,114,0.06)}
+.offer-card.featured .offer-spots{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.16)}
+.spots-label{font-size:10px;letter-spacing:2.2px;color:var(--ink-mid);font-weight:700}
+.offer-card.featured .spots-label{color:rgba(255,255,255,0.62)}
+.spots-count{font-size:13px;font-weight:700;color:#B84A4A}
+.offer-btn{display:block;width:100%;text-align:center;text-decoration:none;padding:16px;border-radius:4px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;transition:all 0.2s}
+.offer-btn-outline{border:1.5px solid var(--blue);color:var(--blue);background:transparent}
+.offer-btn-outline:hover{background:var(--blue);color:#fff}
+.offer-btn-solid{background:var(--blue);color:#fff;border:none;box-shadow:0 4px 20px rgba(33,150,201,0.4)}
+.offer-btn-solid:hover{background:#fff;color:var(--blue-xdark)}
+
+/* HOW DROPS WORK */
+.how-section{background:linear-gradient(160deg,var(--sky) 0%,var(--sky-mid) 100%)}
+.how-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.steps{display:flex;flex-direction:column;gap:0;margin-top:48px}
+.step{display:flex;gap:24px;padding:28px 0;border-bottom:1px solid var(--border);position:relative}
+.step:last-child{border-bottom:none}
+.step-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--blue);opacity:0.2;line-height:1;flex-shrink:0;width:52px}
+.step-body h4{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:1px;color:var(--ink);margin-bottom:8px}
+.step-body p{font-size:14px;color:var(--ink-light);line-height:1.6}
+.how-visual{background:var(--white);border-radius:12px;border:1px solid var(--border-mid);padding:40px;box-shadow:0 20px 60px rgba(33,150,201,0.1)}
+.drop-timeline{display:flex;flex-direction:column;gap:0}
+.drop-phase{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.drop-phase:last-child{border-bottom:none}
+.phase-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;border:2px solid}
+.phase-dot.active{background:rgba(33,150,201,0.1);border-color:var(--blue);color:var(--blue)}
+.phase-dot.done{background:rgba(99,153,34,0.1);border-color:var(--rich);color:var(--rich)}
+.phase-dot.next{background:rgba(255,255,255,0);border-color:var(--border-mid);color:var(--ink-light)}
+.phase-body{flex:1}
+.phase-title{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:1px;color:var(--ink);margin-bottom:4px}
+.phase-desc{font-size:13px;color:var(--ink-light);line-height:1.5}
+.phase-tag{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:2px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px}
+.tag-live{background:rgba(184,74,74,0.07);border:1px solid rgba(184,74,74,0.18);color:#B84A4A}
+.tag-open{background:rgba(99,153,34,0.08);border:1px solid rgba(99,153,34,0.2);color:var(--rich)}
+.tag-upcoming{background:rgba(33,150,201,0.08);border:1px solid rgba(33,150,201,0.2);color:var(--blue)}
+
+/* ABOUT */
+.about-section{background:var(--white)}
+.about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.about-stat{background:var(--sky);border:1px solid var(--border-mid);border-radius:8px;padding:24px;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:44px;font-weight:900;color:var(--ink);line-height:1;margin-bottom:6px}
+.stat-num.blue{color:var(--blue)}.stat-num.green{color:var(--rich)}
+.stat-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--ink-light)}
+.about-quote{background:var(--blue-xdark);border-radius:10px;padding:40px;margin-top:32px}
+.about-quote p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:#fff;line-height:1.5;margin-bottom:16px}
+.about-quote span{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.4)}
+
+/* TESTIMONIALS */
+.testi-section{background:linear-gradient(160deg,var(--sky) 0%,var(--sky-mid) 100%)}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:60px;max-width:1100px;margin-left:auto;margin-right:auto}
+.testi-card{background:var(--white);border-radius:8px;border:1px solid var(--border);padding:32px;transition:transform 0.2s,box-shadow 0.2s}
+.testi-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(33,150,201,0.1)}
+.testi-stars{color:var(--blue);font-size:11px;font-weight:700;margin-bottom:16px;letter-spacing:4px;font-family:'Space Mono',monospace}
+.testi-quote{font-size:15px;color:var(--ink);line-height:1.7;margin-bottom:20px}
+.testi-author{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.3px;color:var(--ink-light)}
+.testi-author span{color:var(--blue);font-weight:600}
+
+/* APPLY / FORM */
+.apply-section{background:var(--blue-xdark);padding:100px 40px}
+.apply-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.apply-section .section-label{color:var(--sky-deep)}
+.apply-section .section-title{color:#fff}
+.apply-section .section-body{color:rgba(255,255,255,0.55)}
+.apply-perks{display:flex;flex-direction:column;gap:16px;margin-top:36px}
+.apply-perk{display:flex;align-items:center;gap:14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.6)}
+.perk-icon{width:32px;height:32px;border-radius:50%;background:rgba(33,150,201,0.15);border:1px solid rgba(33,150,201,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
+.apply-form{background:var(--white);border-radius:12px;padding:44px;box-shadow:0 24px 64px rgba(0,0,0,0.25)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.form-group label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--ink-mid);text-transform:uppercase}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 16px;border:1px solid var(--border-mid);border-radius:4px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);background:var(--sky);transition:border 0.2s,background 0.2s;outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);background:var(--white)}
+.form-group textarea{min-height:120px;resize:vertical}
+.form-submit{width:100%;padding:18px;background:var(--blue);color:#fff;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;border:none;border-radius:4px;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 20px rgba(33,150,201,0.4)}
+.form-submit:hover{background:var(--blue-dark);transform:translateY(-2px)}
+.form-note{font-size:12px;color:var(--ink-light);text-align:center;margin-top:12px;line-height:1.5}
+
+/* FAQ */
+.faq-section{background:var(--white)}
+.faq-inner{max-width:760px;margin:60px auto 0}
+.faq-item{border-bottom:1px solid var(--border);padding:24px 0;cursor:pointer}
+.faq-q{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:var(--ink);display:flex;justify-content:space-between;align-items:center;letter-spacing:0.5px}
+.faq-icon{color:var(--blue);font-size:18px;transition:transform 0.2s;flex-shrink:0;margin-left:16px}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{font-size:14px;color:var(--ink-light);line-height:1.7;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s;padding-top:0}
+.faq-item.open .faq-a{max-height:300px;padding-top:14px}
+
+/* FOOTER */
+footer{background:var(--ink);padding:60px 40px 40px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.footer-brand{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.9)}
+.footer-brand .rekt{color:#B84A4A}.footer-brand .rich{color:var(--rich)}
+.footer-desc{font-size:14px;color:rgba(255,255,255,0.35);line-height:1.6;max-width:320px;margin-top:12px}
+.footer-links{display:flex;gap:28px;flex-wrap:wrap}
+.footer-links a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:rgba(255,255,255,0.7)}
+.footer-bottom{padding-top:28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-copy{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.2)}
+.footer-disclaimer{font-size:11px;color:rgba(255,255,255,0.15);max-width:520px;line-height:1.5}
+
+/* STICKY BAR */
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:99;background:var(--blue-xdark);border-top:1px solid rgba(255,255,255,0.1);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;transform:translateY(100%);transition:transform 0.4s cubic-bezier(.22,1,.36,1)}
+.sticky-bar.visible{transform:translateY(0)}
+.sticky-bar-left{display:flex;align-items:center;gap:16px}
+.sticky-bar-logo{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;color:rgba(255,255,255,0.5)}
+.sticky-bar-logo .rekt{color:#B84A4A}.sticky-bar-logo .rich{color:var(--rich)}
+.sticky-bar-tagline{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.35)}
+.sticky-bar-right{display:flex;align-items:center;gap:12px}
+.sticky-bar-tag{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.4)}
+.sticky-bar-btn{background:var(--blue);color:#fff;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;padding:10px 22px;border-radius:3px;text-decoration:none;transition:background 0.2s;white-space:nowrap;box-shadow:0 2px 12px rgba(33,150,201,0.4)}
+.sticky-bar-btn:hover{background:var(--blue-dark)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  section{padding:70px 20px}
+  .how-inner,.about-inner,.apply-inner{grid-template-columns:1fr;gap:40px}
+  .form-row{grid-template-columns:1fr}
+  .drop-status-bar{gap:20px;padding:14px 20px}
+  .drop-divider{display:none}
+  .footer-top{flex-direction:column}
+  .sticky-bar{padding:12px 20px}
+  .sticky-bar-tagline,.sticky-bar-tag{display:none}
+}
+@media(max-width:640px){
+  .hero-btns{flex-direction:column;align-items:stretch}
+  .about-stats{grid-template-columns:1fr 1fr}
+  .apply-form{padding:28px}
+  footer{padding:40px 20px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar" id="sticky-bar">
+  <div class="sticky-bar-left">
+    <div class="sticky-bar-logo"><span class="rekt">REKT</span> OR <span class="rich">RICH</span></div>
+    <div class="sticky-bar-tagline">DROP 001 · LIMITED SPOTS REMAINING</div>
+  </div>
+  <div class="sticky-bar-right">
+    <div class="sticky-bar-tag">DROP 001 LIVE NOW · FUNDING PASS $499</div>
+    <a href="#apply" class="sticky-bar-btn">APPLY NOW →</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="nav-logo">
+    <span class="rekt">REKT</span>
+    <span class="sep">&nbsp;OR&nbsp;</span>
+    <span class="rich">RICH</span>
+    <span style="color:var(--ink-light);font-weight:400;">&nbsp;· DROPS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#offers">OFFERS</a></li>
+    <li><a href="#how">HOW IT WORKS</a></li>
+    <li><a href="#about">ABOUT US</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#apply" class="nav-cta">APPLY NOW</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <svg class="hero-chart" viewBox="0 0 1440 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polyline points="0,600 80,560 160,520 260,540 340,460 440,400 540,420 640,340 720,360 820,280 920,300 1020,220 1120,240 1220,160 1320,180 1440,100" fill="none" stroke="#639922" stroke-width="1.5" opacity="0.18"/>
+    <polygon points="0,600 80,560 160,520 260,540 340,460 440,400 540,420 640,340 720,360 820,280 920,300 1020,220 1120,240 1220,160 1320,180 1440,100 1440,800 0,800" fill="#639922" opacity="0.04"/>
+    <polyline points="0,200 80,240 160,220 260,280 340,260 440,320 540,300 640,380 720,360 820,440 920,420 1020,500 1120,480 1220,560 1320,540 1440,620" fill="none" stroke="#B84A4A" stroke-width="1.5" opacity="0.18"/>
+  </svg>
+  <div class="hero-content">
+    <div class="drop-pill"><div class="pulse-dot"></div>DROP 001 · NOW OPEN · LIMITED ACCESS</div>
+    <div class="banner-wrap">
+      <svg width="100%" viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg">
+        <defs><pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0L0 0L0 28" fill="none" stroke="#ffffff" stroke-width="0.3"/></pattern></defs>
+        <rect width="680" height="220" fill="#080808"/>
+        <rect width="680" height="220" fill="url(#grid)" opacity="0.06"/>
+        <polyline points="20,18 55,22 80,30 100,28 120,50 140,44 155,80 170,70 185,115 195,105 210,150 215,145 220,175" fill="none" stroke="#B84A4A" stroke-width="2" opacity="0.85"/>
+        <polygon points="20,18 55,22 80,30 100,28 120,50 140,44 155,80 170,70 185,115 195,105 210,150 215,145 220,175 220,210 20,210" fill="#B84A4A" opacity="0.06"/>
+        <polyline points="460,175 475,165 490,170 510,140 530,150 550,108 565,120 580,80 600,92 620,52 640,62 660,28" fill="none" stroke="#639922" stroke-width="2" opacity="0.85"/>
+        <polygon points="460,175 475,165 490,170 510,140 530,150 550,108 565,120 580,80 600,92 620,52 640,62 660,28 660,210 460,210" fill="#639922" opacity="0.06"/>
+        <text x="230" y="108" font-family="Georgia, serif" font-size="62" font-weight="700" fill="#B84A4A" text-anchor="middle" letter-spacing="-1">REKT</text>
+        <text x="340" y="98" font-family="monospace" font-size="13" fill="#444" text-anchor="middle" letter-spacing="4">OR</text>
+        <text x="452" y="108" font-family="Georgia, serif" font-size="62" font-weight="700" fill="#639922" text-anchor="middle" letter-spacing="-1">RICH</text>
+        <line x1="150" y1="120" x2="530" y2="120" stroke="#222" stroke-width="0.8"/>
+        <text x="340" y="142" font-family="monospace" font-size="11" fill="#444" text-anchor="middle" letter-spacing="3">FUNDED ACCOUNTS &amp; PRIVATE MENTORSHIP</text>
+        <text x="340" y="172" font-family="monospace" font-size="9" fill="#333" text-anchor="middle" letter-spacing="3">LIMITED DROP ACCESS · WHEN IT FILLS, IT CLOSES</text>
+        <rect x="22" y="8" width="48" height="18" rx="2" fill="#B84A4A" opacity="0.15"/>
+        <rect x="22" y="8" width="48" height="18" rx="2" fill="none" stroke="#B84A4A" stroke-width="0.8"/>
+        <text x="46" y="21" font-family="monospace" font-size="9" fill="#B84A4A" text-anchor="middle" letter-spacing="1">REKT</text>
+        <rect x="610" y="8" width="48" height="18" rx="2" fill="#639922" opacity="0.15"/>
+        <rect x="610" y="8" width="48" height="18" rx="2" fill="none" stroke="#639922" stroke-width="0.8"/>
+        <text x="634" y="21" font-family="monospace" font-size="9" fill="#639922" text-anchor="middle" letter-spacing="1">RICH</text>
+        <text x="340" y="200" font-family="monospace" font-size="9" fill="#2a2a2a" text-anchor="middle" letter-spacing="3">DROP 001</text>
+      </svg>
+    </div>
+    <p class="hero-sub">Drop 001 — now open</p>
+    <p class="hero-tagline">We run drops — limited openings for done-for-you funded challenge passing and private 1-on-1 mentorship. When the spots fill, we close. The next opening is announced separately.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#apply">APPLY FOR A SPOT</a>
+      <a class="btn-outline" href="#offers">SEE WHAT'S IN THE DROP</a>
+    </div>
+  </div>
+  <a class="scroll-arrow" href="#drop-status">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    SCROLL
+  </a>
+</section>
+
+<!-- DROP STATUS BAR -->
+<div class="drop-status-bar" id="drop-status">
+  <div class="drop-status-item">
+    <div><div class="drop-status-label">Current drop</div><div class="drop-status-val open">DROP 001 — LIVE</div></div>
+  </div>
+  <div class="drop-divider"></div>
+  <div class="drop-status-item">
+    <div><div class="drop-status-label">Done-for-you passing spots</div><div class="drop-status-val limited">5 OF 5 REMAINING</div></div>
+  </div>
+  <div class="drop-divider"></div>
+  <div class="drop-status-item">
+    <div><div class="drop-status-label">Mentorship spots</div><div class="drop-status-val limited">12 OF 12 REMAINING</div></div>
+  </div>
+  <div class="drop-divider"></div>
+  <div class="drop-status-item">
+    <div><div class="drop-status-label">Closes</div><div class="drop-status-val open">WHEN FULL</div></div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <span class="ticker-item">DROP 001 <span class="ticker-sep">·</span> <span class="up">LIVE NOW</span></span>
+    <span class="ticker-item">DONE-FOR-YOU FUNDED PASSING <span class="ticker-sep">·</span> <span class="up">8 SPOTS LEFT</span></span>
+    <span class="ticker-item">1-ON-1 MENTORSHIP <span class="ticker-sep">·</span> <span class="limited" style="color:#ffc97b">3 SPOTS LEFT</span></span>
+    <span class="ticker-item">WHEN IT FILLS <span class="ticker-sep">·</span> <span class="dn">IT CLOSES</span></span>
+    <span class="ticker-item">NEXT DROP <span class="ticker-sep">·</span> <span class="up">TBA</span></span>
+    <span class="ticker-item">$1,500 · APPLICATION ONLY <span class="ticker-sep">·</span> <span class="up">APPLY BELOW</span></span>
+    <span class="ticker-item">DROP 001 <span class="ticker-sep">·</span> <span class="up">LIVE NOW</span></span>
+    <span class="ticker-item">DONE-FOR-YOU FUNDED PASSING <span class="ticker-sep">·</span> <span class="up">8 SPOTS LEFT</span></span>
+    <span class="ticker-item">1-ON-1 MENTORSHIP <span class="ticker-sep">·</span> <span class="limited" style="color:#ffc97b">3 SPOTS LEFT</span></span>
+    <span class="ticker-item">WHEN IT FILLS <span class="ticker-sep">·</span> <span class="dn">IT CLOSES</span></span>
+    <span class="ticker-item">NEXT DROP <span class="ticker-sep">·</span> <span class="up">TBA</span></span>
+    <span class="ticker-item">$1,500 · APPLICATION ONLY <span class="ticker-sep">·</span> <span class="up">APPLY BELOW</span></span>
+  </div>
+</div>
+
+<!-- OFFERS -->
+<section class="offers-section" id="offers">
+  <div style="max-width:1100px;margin:0 auto;text-align:center">
+    <span class="section-label">What's in drop 001</span>
+    <h2 class="section-title">Two offers. Both capped.<br>Both close when full.</h2>
+    <p class="section-body center">No subscriptions. No revolving door. Each drop has a fixed number of spots across two focused offers — done-for-you funded passing and private mentorship.</p>
+  </div>
+  <div class="offers-grid" id="pricing">
+    <div class="offer-card">
+      <div class="offer-badge badge-open"><div class="pulse-dot" style="background:#7bffae"></div>SPOTS AVAILABLE</div>
+      <h3 class="offer-name">Done-For-You<br>Funded Passing</h3>
+      <p class="offer-desc">You hand us the challenge. We trade it. You get funded. No screen time, no stress, no guesswork — we do the full work so you skip straight to a funded account.</p>
+      <ul class="offer-features">
+        <li><span class="check">✓</span>We trade the challenge on your behalf — done for you</li>
+        <li><span class="check">✓</span>Works with all major funded challenge providers</li>
+        <li><span class="check">✓</span>You do nothing — we handle it start to finish</li>
+        <li><span class="check">✓</span>Direct contact throughout the process</li>
+      </ul>
+      <div class="offer-spots">
+        <span class="spots-label">PRICE</span>
+        <span class="spots-count">$499</span>
+      </div>
+      <div class="offer-spots">
+        <span class="spots-label">SPOTS IN THIS DROP</span>
+        <span class="spots-count">5 OF 5 LEFT</span>
+      </div>
+      <a href="#apply" class="offer-btn offer-btn-outline">APPLY FOR THIS OFFER →</a>
+    </div>
+    <div class="offer-card featured">
+      <div class="offer-badge badge-limited"><div class="pulse-dot" style="background:#ffc97b"></div>LIMITED — 12 TOTAL</div>
+      <h3 class="offer-name" style="color:#fff">Private 1-on-1<br>Mentorship</h3>
+      <p class="offer-desc" style="color:rgba(255,255,255,0.6)">Hands-on, personalised trading mentorship built around your charts, your mistakes, and your specific weaknesses. Not a course. Not a group call. Direct work with you.</p>
+      <ul class="offer-features">
+        <li><span class="check">✓</span>Personal chart reviews and mistake breakdowns</li>
+        <li><span class="check">✓</span>Custom trading framework tailored to you</li>
+        <li><span class="check">✓</span>Weekly accountability and progress tracking</li>
+        <li><span class="check">✓</span>Application-only — we vet every client</li>
+      </ul>
+      <div class="offer-spots" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1)">
+        <span class="spots-label" style="color:rgba(255,255,255,0.4)">PRICE</span>
+        <span class="spots-count">$1,500</span>
+      </div>
+      <div class="offer-spots" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1)">
+        <span class="spots-label" style="color:rgba(255,255,255,0.4)">SPOTS IN THIS DROP</span>
+        <span class="spots-count">12 OF 12 LEFT</span>
+      </div>
+      <a href="#apply" class="offer-btn offer-btn-solid">APPLY FOR THIS OFFER →</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <div>
+      <span class="section-label">The drop model</span>
+      <h2 class="section-title">Runs like a release. Not like a subscription.</h2>
+      <p class="section-body">Most trading services stay open forever and take anyone. We don't. Each drop is a limited opening — controlled, intentional, and focused on getting real results for a small group of clients.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body"><h4>DROP OPENS</h4><p>A fixed number of spots open across both offers. The announcement goes out and the window is live.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body"><h4>YOU APPLY</h4><p>We review applications and select clients who are serious and a genuine fit. This keeps the quality high on both ends.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body"><h4>SPOTS FILL — DROP CLOSES</h4><p>Once capacity is reached, the drop closes. No more spots until the next release.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body"><h4>NEXT DROP ANNOUNCED LATER</h4><p>When current clients complete their journey, we open again. Waitlist members get first access.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="how-visual">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--ink-light);margin-bottom:24px">DROP CYCLE STATUS</div>
+      <div class="drop-timeline">
+        <div class="drop-phase">
+          <div class="phase-dot done">✓</div>
+          <div class="phase-body">
+            <div class="phase-title">DROP 001 LAUNCHED</div>
+            <div class="phase-desc">Drop 001 is live. Both offers available with limited spots.</div>
+            <span class="phase-tag tag-live">LIVE NOW</span>
+          </div>
+        </div>
+        <div class="drop-phase">
+          <div class="phase-dot active">→</div>
+          <div class="phase-body">
+            <div class="phase-title">APPLICATIONS OPEN</div>
+            <div class="phase-desc">Currently accepting applications. Spots filling — 10 remaining across both offers.</div>
+            <span class="phase-tag tag-open">ACCEPTING NOW</span>
+          </div>
+        </div>
+        <div class="drop-phase">
+          <div class="phase-dot next">○</div>
+          <div class="phase-body">
+            <div class="phase-title">DROP 001 CLOSES</div>
+            <div class="phase-desc">Once all spots fill, Drop 001 closes. Waitlist opens for Drop 002.</div>
+            <span class="phase-tag tag-upcoming">UPCOMING</span>
+          </div>
+        </div>
+        <div class="drop-phase">
+          <div class="phase-dot next">○</div>
+          <div class="phase-body">
+            <div class="phase-title">DROP 002 — TBA</div>
+            <div class="phase-desc">Next opening is announced when Drop 001 clients complete. Waitlist gets first access.</div>
+            <span class="phase-tag tag-upcoming">TO BE ANNOUNCED</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-inner">
+    <div>
+      <span class="section-label">Who we are</span>
+      <h2 class="section-title">Two traders. Real skin in the game.</h2>
+      <p class="section-body">We built Rekt or Rich because we got tired of services run by people who don't actually trade. Between us we have over 10 years in the markets — Nasdaq, Gold, Forex — through bull runs, flash crashes, and everything in between.</p>
+      <p class="section-body" style="margin-top:16px">Every client we take on gets real attention. That's why the drops are limited. We're not building a volume business. We're building something that actually works for the people in it.</p>
+      <div class="about-quote">
+        <p>"We only open when we can actually deliver. That's the whole point of the drop."</p>
+        <span>— REKT OR RICH, DROP 001</span>
+      </div>
+    </div>
+    <div>
+      <div class="about-stats">
+        <div class="about-stat"><div class="stat-num blue">10+</div><div class="stat-label">YEARS IN MARKETS</div></div>
+        <div class="about-stat"><div class="stat-num green">100%</div><div class="stat-label">DONE FOR YOU</div></div>
+        <div class="about-stat"><div class="stat-num blue">DROP</div><div class="stat-label">LIMITED ACCESS</div></div>
+        <div class="about-stat"><div class="stat-num green">001</div><div class="stat-label">CURRENT DROP</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div style="max-width:1100px;margin:0 auto;text-align:center">
+    <span class="section-label">Client results</span>
+    <h2 class="section-title">What people say.</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★ ★ ★ ★ ★</div>
+      <p class="testi-quote">"The 1-on-1 mentorship was worth every penny. They reviewed my actual trades, told me exactly where I was leaking money, and gave me a real framework. Night and day from where I was."</p>
+      <div class="testi-author">Mentorship client — <span>Drop 001</span></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★ ★ ★ ★ ★</div>
+      <p class="testi-quote">"I'd been sitting on a challenge for weeks not wanting to blow it. Handed it over to these guys and had a funded account within days. Easiest decision I've made in trading."</p>
+      <div class="testi-author">Funded passing client — <span>Drop 001</span></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★ ★ ★ ★ ★</div>
+      <p class="testi-quote">"What stood out was the direct access and the honesty. No fluff, no motivation talk — just real feedback on my charts and specific things to fix. That's what I needed."</p>
+      <div class="testi-author">Mentorship client — <span>Drop 001</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section class="apply-section" id="apply">
+  <div class="apply-inner">
+    <div>
+      <span class="section-label">Apply now</span>
+      <h2 class="section-title">Apply for<br>Drop 001.</h2>
+      <p class="section-body">Spots are limited and we review every application. Tell us where you're at, what you're working on, and which offer you're interested in. We'll be in touch within 48 hours.</p>
+      <div class="apply-perks">
+        <div class="apply-perk"><div class="perk-icon">⚡</div>IMMEDIATE REVIEW WITHIN 48 HOURS</div>
+        <div class="apply-perk"><div class="perk-icon">🔒</div>LIMITED TO SERIOUS TRADERS ONLY</div>
+        <div class="apply-perk"><div class="perk-icon">📉</div>WHEN IT FILLS, THE DROP CLOSES</div>
+        <div class="apply-perk"><div class="perk-icon">🎯</div>WAITLIST GETS FIRST ACCESS NEXT DROP</div>
+      </div>
+    </div>
+    <div class="apply-form">
+      <form name="application" netlify netlify-honeypot="bot-field" id="apply-form">
+        <input type="hidden" name="form-name" value="application"/>
+        <p style="display:none"><label>Don't fill this out: <input name="bot-field"/></label></p>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" name="first_name" placeholder="Your first name" required/></div>
+          <div class="form-group"><label>Last Name</label><input type="text" name="last_name" placeholder="Your last name" required/></div>
+        </div>
+        <div class="form-group"><label>Telegram or Email</label><input type="text" name="contact" placeholder="@username or email address" required/></div>
+        <div class="form-group">
+          <label>Which offer are you applying for?</label>
+          <select name="offer" required>
+            <option value="">Select an option...</option>
+            <option value="funded-passing">Done-For-You Funded Passing — Drop 001</option>
+            <option value="mentorship">1-on-1 Mentorship — Drop 001</option>
+            <option value="both">Both (tell us in the note)</option>
+            <option value="waitlist">Waitlist for Drop 002</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Tell us about yourself</label><textarea name="message" placeholder="Where are you in your trading journey? What funded challenge are you working on or what do you want to improve? Be specific — it helps us give you the right answer." required></textarea></div>
+        <button class="form-submit" type="submit" id="submit-btn">SUBMIT APPLICATION →</button>
+        <p class="form-note">No obligation. We review every application and respond within 48 hours. Spots are allocated in order of fit, not first-come.</p>
+        <div id="form-success" style="display:none;text-align:center;padding:32px 20px;">
+          <div style="font-size:36px;margin-bottom:16px;">✓</div>
+          <div style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:2px;color:var(--ink);font-weight:700;margin-bottom:12px;">APPLICATION RECEIVED</div>
+          <p style="font-size:15px;color:var(--ink-light);line-height:1.7;max-width:340px;margin:0 auto;">We'll review your application and get back to you within 48 hours via Telegram or email. Spots are limited — we'll be in touch soon.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div style="max-width:760px;margin:0 auto;text-align:center">
+    <span class="section-label">Questions</span>
+    <h2 class="section-title">FAQ</h2>
+  </div>
+  <div class="faq-inner">
+    <div class="faq-item open">
+      <div class="faq-q">What is a drop? <span class="faq-icon">+</span></div>
+      <div class="faq-a">A drop is a limited opening of our offers — a fixed number of spots become available, we accept applications, fill them, and then close. When it's full, it's closed. The next opening is announced separately. Think of it like a limited release from a clothing brand.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why is it limited? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Because we only take on clients we can genuinely help. Done-for-you funded passing and 1-on-1 mentorship both require real attention and time. Keeping the numbers low means the quality stays high for everyone in the drop.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if the drop is already full when I apply? <span class="faq-icon">+</span></div>
+      <div class="faq-a">You'll be added to the waitlist for Drop 002. Waitlist members get first access when the next drop opens, before any public announcement. Your application carries over — you don't need to reapply.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Which funded account firms do you support? <span class="faq-icon">+</span></div>
+      <div class="faq-a">We work with all major funded challenge providers. The support is built around the challenge structure and rules of whichever firm you're using. Tell us which firm in your application and we'll confirm fit.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How does the 1-on-1 mentorship work in practice? <span class="faq-icon">+</span></div>
+      <div class="faq-a">It's fully personalised. We start by reviewing your trading history and identifying where you're losing edge. Then we build a framework specific to you — your markets, your hours, your weaknesses. Sessions are direct and scheduled around your availability.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How do I know if I'm a good fit? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Apply and be honest about where you are. We're not looking for experienced traders only — we're looking for people who are serious about improving and willing to put in the work. The application is the filter, not your current skill level.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><span class="rekt">REKT</span> OR <span class="rich">RICH</span></div>
+        <p class="footer-desc">Limited drop access for funded account passing and private trading mentorship. When it fills, it closes.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#offers">OFFERS</a>
+        <a href="#how">HOW IT WORKS</a>
+        <a href="#about">ABOUT</a>
+        <a href="#apply">APPLY</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 REKT OR RICH · ALL RIGHTS RESERVED</div>
+      <div class="footer-disclaimer">Trading involves significant risk. Past performance does not guarantee future results. All information is for educational purposes only and does not constitute financial advice.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Form inline success
+  const applyForm = document.getElementById('apply-form');
+  if (applyForm) {
+    applyForm.addEventListener('submit', function(e) {
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = 'SENDING...';
+      btn.disabled = true;
+      setTimeout(() => {
+        applyForm.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      }, 1200);
+    });
+  }
+  // Sticky bar on scroll
+  const bar = document.getElementById('sticky-bar');
+  window.addEventListener('scroll', () => {
+    bar.classList.toggle('visible', window.scrollY > 400);
+  });
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      item.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>
